@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import javax.print.Doc;
 import java.util.Optional;
 
-public interface DoctorRepo extends JpaRepository<Doctor, Integer> {
+public interface DoctorRepo extends JpaRepository<Doctor, Long> {
     Optional<Doctor> findByMail(String email);
     boolean existsByMail(String email);
 }

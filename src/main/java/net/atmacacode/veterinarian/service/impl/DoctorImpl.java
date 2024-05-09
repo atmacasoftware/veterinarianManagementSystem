@@ -25,7 +25,7 @@ public class DoctorImpl implements IDoctorService {
     }
 
     @Override
-    public Doctor getUserById(int id) {
+    public Doctor getUserById(long id) {
         return this.doctorRepo.findById(id).orElseThrow(() -> new NotFoundException(Msg.notFound(id)));
     }
 
@@ -42,7 +42,7 @@ public class DoctorImpl implements IDoctorService {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         Doctor doctor = this.getUserById(id);
         this.doctorRepo.delete(doctor);
         return true;

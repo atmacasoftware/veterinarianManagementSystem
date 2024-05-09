@@ -1,9 +1,14 @@
 package net.atmacacode.veterinarian.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import net.atmacacode.veterinarian.dto.request.availableDate.AvailableDateSaveRequest;
+
+import java.util.List;
 
 @Entity
 @Table(name = "doctors")
@@ -15,7 +20,7 @@ public class Doctor {
     @Id
     @Column(name = "doctor_id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name = "full_name", length = 100, nullable = false)
     private String name;
@@ -31,4 +36,8 @@ public class Doctor {
 
     @Column(name = "city", length = 255, nullable = false)
     private String city;
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<AvailableDate> availableDateList;
+
 }

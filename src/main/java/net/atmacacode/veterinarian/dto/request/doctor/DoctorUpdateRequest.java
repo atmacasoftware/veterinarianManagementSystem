@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DoctorUpdateRequest {
     @Positive(message = "ID değeri pozitif sayı olmak zorunda")
-    private String id;
+    private Long id;
 
     @NotNull(message = "Doktor adı boş olamaz.")
     private String name;

@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Result> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
-        return new ResponseEntity<>(ResultHelper.uniqueEmailError("Error"), HttpStatus.UNPROCESSABLE_ENTITY);
+        return new ResponseEntity<>(ResultHelper.uniqueError("Error"), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
 

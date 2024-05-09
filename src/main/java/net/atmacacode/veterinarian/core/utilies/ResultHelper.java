@@ -26,8 +26,8 @@ public class ResultHelper {
         return new Result(true, Msg.NOT_FOUND, "404");
     }
 
-    public static Result uniqueEmailError(String msg) {
-        return new Result(true, Msg.IS_EXIST_EMAIL, "422");
+    public static Result uniqueError(String msg) {
+        return new Result(true, Msg.IS_EXIST, "422");
     }
 
     public static <T> ResultData<CursorResponse<T>> cursor(Page<T> pageData) {
