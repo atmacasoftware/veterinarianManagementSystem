@@ -1,4 +1,4 @@
-package net.atmacacode.veterinarian.api.availableDate.v1;
+package net.atmacacode.veterinarian.controller.availableDate.v1;
 
 import jakarta.validation.Valid;
 import net.atmacacode.veterinarian.core.config.modelMapper.IModelMapperService;
@@ -7,12 +7,9 @@ import net.atmacacode.veterinarian.core.result.ResultData;
 import net.atmacacode.veterinarian.core.utilies.ResultHelper;
 import net.atmacacode.veterinarian.dto.request.availableDate.AvailableDateSaveRequest;
 import net.atmacacode.veterinarian.dto.request.availableDate.AvailableDateUpdateRequest;
-import net.atmacacode.veterinarian.dto.request.doctor.DoctorUpdateRequest;
 import net.atmacacode.veterinarian.dto.response.CursorResponse;
 import net.atmacacode.veterinarian.dto.response.availableDate.AvailableDateResponse;
-import net.atmacacode.veterinarian.dto.response.doctor.DoctorResponse;
 import net.atmacacode.veterinarian.entities.AvailableDate;
-import net.atmacacode.veterinarian.entities.Doctor;
 import net.atmacacode.veterinarian.service.abstracts.IAvailableDateService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

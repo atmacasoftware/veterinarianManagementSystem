@@ -1,7 +1,6 @@
 package net.atmacacode.veterinarian.dto.request.doctor;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,10 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorUpdateRequest {
-    @Positive(message = "ID değeri pozitif sayı olmak zorunda")
-    private Long id;
-
+public class DoctorRequest {
     @NotNull(message = "Doktor adı boş olamaz.")
     private String name;
 

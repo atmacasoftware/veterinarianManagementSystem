@@ -5,6 +5,8 @@ import net.atmacacode.veterinarian.core.result.ResultData;
 import net.atmacacode.veterinarian.dto.response.CursorResponse;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public class ResultHelper {
     public static <T> ResultData<T> created(T data) {
         return new ResultData<>(true, Msg.CREATED, "201", data);
@@ -28,6 +30,10 @@ public class ResultHelper {
 
     public static Result uniqueError(String msg) {
         return new Result(true, Msg.IS_EXIST, "422");
+    }
+
+    public static <T> ResultData<List<T>> list(List<T> list) {
+        return new ResultData<>(true, Msg.OK, "200", list);
     }
 
     public static <T> ResultData<CursorResponse<T>> cursor(Page<T> pageData) {
