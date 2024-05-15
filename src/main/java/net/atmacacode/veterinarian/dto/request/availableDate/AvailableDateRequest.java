@@ -1,23 +1,22 @@
 package net.atmacacode.veterinarian.dto.request.availableDate;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import net.atmacacode.veterinarian.dto.request.doctor.DoctorForAvailableDateRequest;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AvailableDateUpdateRequest {
-    @Positive(message = "ID değeri pozitif sayı olmak zorunda")
-    private Long id;
-
+public class AvailableDateRequest {
     @NotNull(message = "Müsait tarih bilgisi boş olamaz.")
     private LocalDate availableDate;
 
-    @NotNull(message = "Doktor ID olamaz")
-    private int doctorId;;
+    @NotNull(message = "Doktor boş olamaz")
+    private DoctorForAvailableDateRequest doctorId;
 }

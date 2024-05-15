@@ -3,48 +3,80 @@ package net.atmacacode.veterinarian.service.impl;
 import net.atmacacode.veterinarian.core.exception.NotFoundException;
 import net.atmacacode.veterinarian.core.utilies.Msg;
 import net.atmacacode.veterinarian.dao.AvailableDateRepo;
+import net.atmacacode.veterinarian.dao.DoctorRepo;
+import net.atmacacode.veterinarian.dto.request.availableDate.AvailableDateRequest;
+import net.atmacacode.veterinarian.dto.response.availableDate.AvailableDateResponse;
 import net.atmacacode.veterinarian.entities.AvailableDate;
-import net.atmacacode.veterinarian.service.abstracts.IAvailableDateService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import net.atmacacode.veterinarian.entities.Doctor;
+import net.atmacacode.veterinarian.mapper.AvailableDateMapper;
+import net.atmacacode.veterinarian.service.abstracts.AvailableDateService;
+import net.atmacacode.veterinarian.service.abstracts.DoctorService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
-public class AvailableDateImpl implements IAvailableDateService {
+public class AvailableDateImpl implements AvailableDateService {
 
     private final AvailableDateRepo availableDateRepo;
+    private final AvailableDateMapper availableDateMapper;
+    private final DoctorRepo doctorRepo;
 
-    public AvailableDateImpl(AvailableDateRepo availableDateRepo) {
+    public AvailableDateImpl(AvailableDateRepo availableDateRepo, AvailableDateMapper availableDateMapper, DoctorRepo doctorRepo) {
         this.availableDateRepo = availableDateRepo;
+        this.availableDateMapper = availableDateMapper;
+        this.doctorRepo = doctorRepo;
     }
 
     @Override
-    public AvailableDate save(AvailableDate availableDate) {
-        return this.availableDateRepo.save(availableDate);
+    public AvailableDateResponse save(AvailableDateRequest request) {
+        Optional<AvailableDate> isAvailableDateExists = availableDateRepo.findByAvailableDateAndDoctorId(request.getAvailableDate(), request.getDoctorId().getId());
+        if (isAvailableDateExists.isEmpty()) {
+            Doctor doctor = doctorRepo.findById(request.getDoctorId().getId()).orElseThrow(() -> new NotFoundException(Msg.notFound(request.getDoctorId().getId(), "doktor")));
+            AvailableDate availableDate = new AvailableDate();
+            availableDate.setDoctor(doctor);
+            availableDate.setAvailableDate(request.getAvailableDate());
+
+            AvailableDate availableDateSaved = availableDateRepo.save(availableDate);
+            return availableDateMapper.asOutput(availableDateSaved);
+        }
+        System.out.println("mevcut");
+        throw new RuntimeException(Msg.IsPossibilityRegistration("müsait tarih"));
     }
 
     @Override
-    public AvailableDate getAvailableDateById(long id) {
-        return this.availableDateRepo.findById(id).orElseThrow(() -> new NotFoundException(Msg.NOT_FOUND));
+    public AvailableDateResponse getAvailableDateById(long id) {
+        return availableDateMapper.asOutput(availableDateRepo.findById(id).orElseThrow(() -> new NotFoundException(Msg.notFound(id, "müsait tarih"))));
     }
 
     @Override
-    public Page<AvailableDate> cursor(int page, int pageSize) {
-        Pageable pageable = PageRequest.of(page, pageSize);
-        return this.availableDateRepo.findAll(pageable);
+    public List<AvailableDateResponse> getAll() {
+        return this.availableDateMapper.asOutput(this.availableDateRepo.findAll());
     }
 
     @Override
-    public AvailableDate update(AvailableDate availableDate) {
-        this.getAvailableDateById(availableDate.getId());
-        return this.availableDateRepo.save(availableDate);
+    public AvailableDateResponse update(long id, AvailableDateRequest request) {
+        Optional<AvailableDate> availableDateFromDb = this.availableDateRepo.findById(id);
+        if (availableDateFromDb.isEmpty()) {
+            throw new NotFoundException(Msg.notFound(id, "müsait tarih"));
+        }
+
+        Doctor doctor = doctorRepo.findById(request.getDoctorId().getId()).orElseThrow(() -> new NotFoundException(Msg.notFound(request.getDoctorId().getId(), "doktor")));
+        AvailableDate availableDate = availableDateFromDb.get();
+        availableDate.setDoctor(doctor);
+        availableDate.setAvailableDate(request.getAvailableDate());
+        AvailableDate availableDateSaved = availableDateRepo.save(availableDate);
+        return this.availableDateMapper.asOutput(availableDateSaved);
     }
 
     @Override
-    public boolean delete(long id) {
-        AvailableDate availableDate = this.getAvailableDateById(id);
-        availableDateRepo.delete(availableDate);
-        return true;
+    public void deleteById(long id) {
+        Optional<AvailableDate> availableDateFromDb = this.availableDateRepo.findById(id);
+        if(availableDateFromDb.isPresent()) {
+            this.availableDateRepo.delete(availableDateFromDb.get());
+        }else{
+            throw new RuntimeException(Msg.notFound(id, "müsait tarih"));
+        }
     }
 }

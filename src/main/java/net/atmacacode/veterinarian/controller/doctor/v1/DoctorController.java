@@ -50,7 +50,7 @@ public class DoctorController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Result delete(@PathVariable int id){
+    public Result delete(@PathVariable long id){
         this.doctorService.deleteById(id);
         return ResultHelper.ok();
     }
