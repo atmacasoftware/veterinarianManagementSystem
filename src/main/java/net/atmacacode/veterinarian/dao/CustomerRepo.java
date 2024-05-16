@@ -3,5 +3,9 @@ package net.atmacacode.veterinarian.dao;
 import net.atmacacode.veterinarian.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CustomerRepo extends JpaRepository<Customer, Integer> {
+import java.util.Optional;
+
+public interface CustomerRepo extends JpaRepository<Customer, Long> {
+    Optional<Customer> findByMail(String email);
+    boolean existsByMail(String email);
 }

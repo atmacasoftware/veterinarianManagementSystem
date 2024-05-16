@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
+import net.atmacacode.veterinarian.dto.request.doctor.DoctorForAvailableDateRequest;
 
 import java.time.LocalDate;
 
@@ -29,5 +30,4 @@ public class AvailableDate {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")
     private Doctor doctor;
-
 }

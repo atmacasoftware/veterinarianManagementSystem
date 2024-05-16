@@ -67,7 +67,7 @@ public class DoctorImpl implements DoctorService {
         if(doctorFromDb.isPresent()){
             this.doctorRepo.delete(doctorFromDb.get());
         }else{
-            throw new RuntimeException(Msg.notFound(id, "doktor"));
+            throw new NotFoundException(Msg.notFound(id, "doktor"));
         }
     }
 

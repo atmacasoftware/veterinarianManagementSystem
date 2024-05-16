@@ -32,6 +32,10 @@ public class ResultHelper {
         return new Result(true, Msg.IS_EXIST, "422");
     }
 
+    public static Result notValid(String msg) {
+        return new Result(true, msg, "400");
+    }
+
     public static <T> ResultData<List<T>> list(List<T> list) {
         return new ResultData<>(true, Msg.OK, "200", list);
     }

@@ -14,7 +14,7 @@ public class Customer {
     @Id
     @Column(name = "customer_id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name = "full_name", length = 100, nullable = false)
     private String name;
@@ -25,9 +25,9 @@ public class Customer {
     @Column(name = "mail", length = 255, nullable = false)
     private String mail;
 
-    @Column(name = "address", length = 255, nullable = false)
+    @Column(name = "address", length = 255)
     private String address;
 
-    @Column(name = "city", length = 5, nullable = false)
+    @Column(name = "city", length = 50)
     private String city;
 }
