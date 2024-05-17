@@ -40,8 +40,11 @@ public class CustomerImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerResponse> getAll() {
-        return customerMapper.asOutput(customerRepo.findAll());
+    public List<CustomerResponse> getAll(String name) {
+        if(name == null || name.isEmpty()){
+            return customerMapper.asOutput(customerRepo.findAll());
+        }
+        return customerMapper.asOutput(customerRepo.findByNameContainsIgnoreCase(name));
     }
 
     @Override

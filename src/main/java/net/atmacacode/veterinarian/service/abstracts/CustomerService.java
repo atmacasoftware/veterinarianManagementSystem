@@ -12,7 +12,7 @@ public interface CustomerService {
 
     CustomerResponse getUserById(long id);
 
-    List<CustomerResponse> getAll();
+    List<CustomerResponse> getAll(String name);
 
     CustomerResponse update(long id, CustomerRequest request);
 

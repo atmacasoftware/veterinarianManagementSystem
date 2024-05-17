@@ -38,8 +38,11 @@ public class CustomerController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public ResultData<List<CustomerResponse>> getAll() {
-        return ResultHelper.list(customerService.getAll());
+    public ResultData<List<CustomerResponse>> getAll(@RequestParam(required = false) String name) {
+        if (name == null || name.isEmpty()) {
+            return ResultHelper.list(customerService.getAll(null));
+        }
+        return ResultHelper.list(customerService.getAll(name));
     }
 
     @PutMapping("/{id}")

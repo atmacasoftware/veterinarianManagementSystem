@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "customers")
 @Data
@@ -30,4 +32,7 @@ public class Customer {
 
     @Column(name = "city", length = 50)
     private String city;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Animal> animalList;
 }

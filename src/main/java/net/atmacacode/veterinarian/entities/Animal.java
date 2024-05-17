@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "animals")
@@ -16,7 +17,7 @@ public class Animal {
     @Id
     @Column(name = "animal_id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name = "name", length = 100, nullable = false)
     private String name;
@@ -34,7 +35,10 @@ public class Animal {
     private String colour;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "date_of_birth", length = 50, nullable = false)
+    @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    private Customer customer;
 }
