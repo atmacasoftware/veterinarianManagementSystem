@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface AnimalRepo extends JpaRepository<Animal, Long> {
     Optional<Animal> findByNameAndCustomerId(String name, long id);
     List<Animal> findByNameContainsIgnoreCase(String name);
+    List<Animal> findAnimalsByCustomerId(long id);
 }

@@ -6,6 +6,7 @@ import net.atmacacode.veterinarian.dao.CustomerRepo;
 import net.atmacacode.veterinarian.dto.request.customer.CustomerRequest;
 import net.atmacacode.veterinarian.dto.response.customer.CustomerResponse;
 import net.atmacacode.veterinarian.entities.Customer;
+import net.atmacacode.veterinarian.mapper.AnimalMapper;
 import net.atmacacode.veterinarian.mapper.CustomerMapper;
 import net.atmacacode.veterinarian.service.abstracts.CustomerService;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class CustomerImpl implements CustomerService {
     private final CustomerRepo customerRepo;
     private final CustomerMapper customerMapper;
 
-    public CustomerImpl(CustomerRepo customerRepo, CustomerMapper customerMapper) {
+    public CustomerImpl(CustomerRepo customerRepo, CustomerMapper customerMapper, AnimalMapper animalMapper) {
         this.customerRepo = customerRepo;
         this.customerMapper = customerMapper;
     }

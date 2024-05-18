@@ -5,6 +5,7 @@ import net.atmacacode.veterinarian.core.result.Result;
 import net.atmacacode.veterinarian.core.result.ResultData;
 import net.atmacacode.veterinarian.core.utilies.ResultHelper;
 import net.atmacacode.veterinarian.dto.request.customer.CustomerRequest;
+import net.atmacacode.veterinarian.dto.response.animal.AnimalResponse;
 import net.atmacacode.veterinarian.dto.response.customer.CustomerResponse;
 import net.atmacacode.veterinarian.service.abstracts.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;

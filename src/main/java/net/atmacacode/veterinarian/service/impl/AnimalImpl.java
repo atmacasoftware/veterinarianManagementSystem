@@ -64,6 +64,11 @@ public class AnimalImpl implements AnimalService {
     }
 
     @Override
+    public List<AnimalResponse> getAllAnimalsByCustomer(long id) {
+        return animalMapper.asOutput(this.animalRepo.findAnimalsByCustomerId(id));
+    }
+
+    @Override
     public AnimalResponse update(long id, AnimalRequest request) {
         Optional<Animal> animalDateFromDb = this.animalRepo.findById(id);
         if (animalDateFromDb.isEmpty()) {

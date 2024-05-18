@@ -13,6 +13,8 @@ public interface AnimalService {
 
     List<AnimalResponse> getAll(String name);
 
+    List<AnimalResponse> getAllAnimalsByCustomer(long id);
+
     AnimalResponse update(long id, AnimalRequest request);
 
     void deleteById(long id);

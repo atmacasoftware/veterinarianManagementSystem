@@ -36,12 +36,19 @@ public class AnimalController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public ResultData<List<AnimalResponse>> getAlll(@RequestParam(required = false) String name){
+    public ResultData<List<AnimalResponse>> getAll(@RequestParam(required = false) String name){
         if(name == null || name.isEmpty()){
             return ResultHelper.list(this.animalService.getAll(null));
         }
         return ResultHelper.list(this.animalService.getAll(name));
     }
+
+    @GetMapping("/customer")
+    @ResponseStatus(HttpStatus.OK)
+    public ResultData<List<AnimalResponse>> getAllAnimalsByCustomer(@RequestParam Long id){
+        return ResultHelper.list(this.animalService.getAllAnimalsByCustomer(id));
+    }
+
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
