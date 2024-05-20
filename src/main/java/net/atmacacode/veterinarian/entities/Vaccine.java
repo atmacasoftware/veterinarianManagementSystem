@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "vaccines")
@@ -16,7 +17,7 @@ public class Vaccine {
     @Id
     @Column(name = "vaccine_id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -25,10 +26,14 @@ public class Vaccine {
     private String code;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "protection_start_date", nullable = false, length = 100)
+    @Column(name = "protection_start_date", length = 100)
     private LocalDate protectionStartDate;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "protection_finish_date", nullable = false, length = 100)
+    @Column(name = "protection_finish_date", length = 100)
     private LocalDate protectionFinishDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "animal_id", referencedColumnName = "animal_id")
+    private Animal animal;
 }

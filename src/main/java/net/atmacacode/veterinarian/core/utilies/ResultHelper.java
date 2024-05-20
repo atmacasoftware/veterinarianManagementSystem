@@ -2,7 +2,6 @@ package net.atmacacode.veterinarian.core.utilies;
 
 import net.atmacacode.veterinarian.core.result.Result;
 import net.atmacacode.veterinarian.core.result.ResultData;
-import net.atmacacode.veterinarian.dto.response.CursorResponse;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -40,13 +39,4 @@ public class ResultHelper {
         return new ResultData<>(true, Msg.OK, "200", list);
     }
 
-    public static <T> ResultData<CursorResponse<T>> cursor(Page<T> pageData) {
-        CursorResponse<T> cursor = new CursorResponse<>();
-        cursor.setItems(pageData.getContent());
-        cursor.setPageNumber(pageData.getNumber());
-        cursor.setPageSize(pageData.getSize());
-        cursor.setTotalElements(pageData.getTotalElements());
-
-        return ResultHelper.success(cursor);
-    }
 }

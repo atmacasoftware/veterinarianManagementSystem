@@ -41,4 +41,8 @@ public class Animal {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customer;
+
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Vaccine> vaccineList;
+
 }
