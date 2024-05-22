@@ -9,6 +9,8 @@ parameters and endpoints used in entities are given in the document below.
 * Java SDK 21
 * Spring Boot 3.2.5
 * PostgreSQL 15
+* JPA
+* Swagger
 
 <hr>
 

@@ -15,8 +15,6 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface DoctorMapper {
 
-    DoctorMapper INSTANCE = Mappers.getMapper( DoctorMapper.class );
-
     Doctor asEntity(DoctorRequest doctorRequest);
 
     DoctorResponse asOutput(Doctor doctor);
