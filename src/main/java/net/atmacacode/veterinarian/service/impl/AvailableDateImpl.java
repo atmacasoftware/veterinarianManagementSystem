@@ -10,9 +10,9 @@ import net.atmacacode.veterinarian.entities.AvailableDate;
 import net.atmacacode.veterinarian.entities.Doctor;
 import net.atmacacode.veterinarian.mapper.AvailableDateMapper;
 import net.atmacacode.veterinarian.service.abstracts.AvailableDateService;
-import net.atmacacode.veterinarian.service.abstracts.DoctorService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +56,11 @@ public class AvailableDateImpl implements AvailableDateService {
     }
 
     @Override
+    public List<AvailableDateResponse> getFilter(Long doctorId, LocalDate from, LocalDate to) {
+        return availableDateMapper.asOutput(availableDateRepo.findByDoctorIdAndAvailableDateBetween(doctorId, from, to));
+    }
+
+    @Override
     public AvailableDateResponse update(long id, AvailableDateRequest request) {
         Optional<AvailableDate> availableDateFromDb = this.availableDateRepo.findById(id);
         if (availableDateFromDb.isEmpty()) {
@@ -76,7 +81,7 @@ public class AvailableDateImpl implements AvailableDateService {
         if(availableDateFromDb.isPresent()) {
             this.availableDateRepo.delete(availableDateFromDb.get());
         }else{
-            throw new RuntimeException(Msg.notFound(id, "müsait tarih"));
+            throw new NotFoundException(Msg.notFound(id, "müsait tarih"));
         }
     }
 }

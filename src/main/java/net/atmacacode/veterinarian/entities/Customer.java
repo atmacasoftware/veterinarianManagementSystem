@@ -35,4 +35,7 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Animal> animalList;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Appointment> appointmentList;
 }

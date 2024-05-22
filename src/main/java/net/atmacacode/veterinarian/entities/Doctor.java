@@ -35,4 +35,7 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<AvailableDate> availableDateList;
 
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Appointment> appointmentList;
+
 }

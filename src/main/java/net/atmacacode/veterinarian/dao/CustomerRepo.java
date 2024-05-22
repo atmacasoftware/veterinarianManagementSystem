@@ -1,6 +1,5 @@
 package net.atmacacode.veterinarian.dao;
 
-import net.atmacacode.veterinarian.entities.Animal;
 import net.atmacacode.veterinarian.entities.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

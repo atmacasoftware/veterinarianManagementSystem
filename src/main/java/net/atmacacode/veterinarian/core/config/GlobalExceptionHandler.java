@@ -32,5 +32,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ResultHelper.notValid(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Result> runTimeException(RuntimeException e) {
+        return new ResponseEntity<>(ResultHelper.notValid(e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NumberFormatException.class)
+    public ResponseEntity<Result> numberFormatException(NumberFormatException e) {
+        return new ResponseEntity<>(ResultHelper.notValid("Girilen saat bilgisi 0-24 arasında olmalıdır."), HttpStatus.BAD_REQUEST);
+    }
+
+
 
 }

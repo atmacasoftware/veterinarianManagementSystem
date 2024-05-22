@@ -1,7 +1,6 @@
 package net.atmacacode.veterinarian.service.impl;
 
 import net.atmacacode.veterinarian.core.exception.NotFoundException;
-import net.atmacacode.veterinarian.core.result.ResultData;
 import net.atmacacode.veterinarian.core.utilies.Msg;
 import net.atmacacode.veterinarian.dao.DoctorRepo;
 import net.atmacacode.veterinarian.dto.request.doctor.DoctorRequest;
@@ -9,12 +8,7 @@ import net.atmacacode.veterinarian.dto.response.doctor.DoctorResponse;
 import net.atmacacode.veterinarian.entities.Doctor;
 import net.atmacacode.veterinarian.mapper.DoctorMapper;
 import net.atmacacode.veterinarian.service.abstracts.DoctorService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import javax.print.Doc;
 import java.util.List;
 import java.util.Optional;
 

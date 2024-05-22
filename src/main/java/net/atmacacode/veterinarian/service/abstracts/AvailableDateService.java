@@ -4,6 +4,7 @@ import net.atmacacode.veterinarian.dto.request.availableDate.AvailableDateReques
 import net.atmacacode.veterinarian.dto.response.availableDate.AvailableDateResponse;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -13,6 +14,8 @@ public interface AvailableDateService {
     AvailableDateResponse getAvailableDateById(long id);
 
     List<AvailableDateResponse> getAll();
+
+    List<AvailableDateResponse> getFilter(Long doctorId, LocalDate from, LocalDate to);
 
     AvailableDateResponse update(long id, AvailableDateRequest request);
 

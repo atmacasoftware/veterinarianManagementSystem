@@ -9,7 +9,7 @@ import net.atmacacode.veterinarian.dto.response.availableDate.AvailableDateRespo
 import net.atmacacode.veterinarian.service.abstracts.AvailableDateService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -36,8 +36,14 @@ public class AvailableDateController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public ResultData<List<AvailableDateResponse>> getAlll(){
+    public ResultData<List<AvailableDateResponse>> getAll(){
         return ResultHelper.list(this.availableDateService.getAll());
+    }
+
+    @GetMapping("/filter")
+    @ResponseStatus(HttpStatus.OK)
+    public ResultData<List<AvailableDateResponse>> getFilter(@RequestParam Long doctorId, @RequestParam LocalDate startDate, @RequestParam LocalDate endDate){
+        return ResultHelper.list(this.availableDateService.getFilter(doctorId, startDate, endDate));
     }
 
     @PutMapping("/{id}")

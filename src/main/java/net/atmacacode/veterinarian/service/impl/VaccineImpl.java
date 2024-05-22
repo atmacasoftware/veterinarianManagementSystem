@@ -8,16 +8,11 @@ import net.atmacacode.veterinarian.dto.request.vaccine.VaccineRequest;
 import net.atmacacode.veterinarian.dto.response.vaccine.VaccineResponse;
 import net.atmacacode.veterinarian.entities.Animal;
 import net.atmacacode.veterinarian.entities.Vaccine;
-import net.atmacacode.veterinarian.mapper.AnimalMapper;
 import net.atmacacode.veterinarian.mapper.VaccineMapper;
-import net.atmacacode.veterinarian.service.abstracts.AnimalService;
 import net.atmacacode.veterinarian.service.abstracts.VaccineService;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,45 +46,6 @@ public class VaccineImpl implements VaccineService {
             Vaccine vaccineSaved = vaccineRepo.save(vaccine);
             return vaccineMapper.asOutput(vaccineSaved);
         }
-
-        //if (isCodeExists.isEmpty()) {
-        //    System.out.println("deneme");
-        //    Animal animal = animalRepo.findById(request.getAnimalId().getId()).orElseThrow(() -> new NotFoundException(Msg.notFound(request.getAnimalId().getId(), "hayvan")));
-        //    Vaccine vaccine = new Vaccine();
-        //    vaccine.setName(request.getName());
-        //    vaccine.setCode(request.getCode());
-        //    vaccine.setProtectionStartDate(request.getProtectionStartDate());
-        //    vaccine.setProtectionFinishDate(request.getProtectionFinishDate());
-        //    vaccine.setAnimal(animal);
-        //    Vaccine vaccineSaved = vaccineRepo.save(vaccine);
-        //    return vaccineMapper.asOutput(vaccineSaved);
-        //}
-//
-        //if(!isVaccineExists.isEmpty()) {
-        //    System.out.println("deneme");
-        //}
-
-        //if (isVaccineExists.isEmpty()) {
-        //    Animal animal = animalRepo.findById(request.getAnimalId().getId()).orElseThrow(() -> new NotFoundException(Msg.notFound(request.getAnimalId().getId(), "hayvan")));
-        //    Vaccine vaccine = new Vaccine();
-        //    vaccine.setName(request.getName());
-        //    vaccine.setCode(request.getCode());
-        //    vaccine.setProtectionStartDate(request.getProtectionStartDate());
-        //    vaccine.setProtectionFinishDate(request.getProtectionFinishDate());
-        //    vaccine.setAnimal(animal);
-        //    Vaccine vaccineSaved = vaccineRepo.save(vaccine);
-        //    return vaccineMapper.asOutput(vaccineSaved);
-        //}
-//
-        //if(isVaccineExists.isPresent()){
-        //    System.out.println("asdfasdf");
-        //    long days = Duration.between(isVaccineExists.get().getProtectionFinishDate(), request.getProtectionStartDate()).toDays();
-        //    System.out.println(days);
-        //}
-//
-        //if(isVaccineExists.isPresent()){
-        //    System.out.println(isVaccineExists.get().getId());
-        //}
 
         throw new RuntimeException(Msg.IsPossibilityRegistration("aşı"));
     }

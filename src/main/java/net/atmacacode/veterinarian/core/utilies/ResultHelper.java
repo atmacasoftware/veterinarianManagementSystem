@@ -35,6 +35,10 @@ public class ResultHelper {
         return new Result(true, msg, "400");
     }
 
+    public static Result numberFormat(String msg) {
+        return new Result(true, msg, "400");
+    }
+
     public static <T> ResultData<List<T>> list(List<T> list) {
         return new ResultData<>(true, Msg.OK, "200", list);
     }

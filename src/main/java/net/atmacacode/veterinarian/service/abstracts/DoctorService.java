@@ -2,8 +2,6 @@ package net.atmacacode.veterinarian.service.abstracts;
 
 import net.atmacacode.veterinarian.dto.request.doctor.DoctorRequest;
 import net.atmacacode.veterinarian.dto.response.doctor.DoctorResponse;
-import net.atmacacode.veterinarian.entities.Doctor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
